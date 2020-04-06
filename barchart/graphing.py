@@ -16,6 +16,7 @@ def main():
         print(total_sterilizations)
         ax.plot(list(range(1943,domain+1943)), total_sterilizations, label=region)
     ax.legend()
+    plt.title("USA Compulsory Sterilization by Region")
     plt.xticks(list(range(1943,domain+1943)))
     plt.show()
 if __name__ == '__main__':
