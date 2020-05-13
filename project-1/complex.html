@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Digital NYC template</title>
+<title>New York Wi-Fi Hotspot Locations</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=10" />
 <link rel="stylesheet" type="text/css" href="style.css"></link>
@@ -11,6 +11,9 @@
 <script src="https://2020.vizsociety.net/shared/js/jquery-1.10.2.js"></script>
 <script src="https://2020.vizsociety.net/shared/js/shared.js"></script>
 <script src="https://2020.vizsociety.net/d3viz/lib/all.php"></script>
+
+
+
 
 <script type="text/javascript">
 /* Flexible D3.js global data viewer — by Alex Wellerstein, 2015-2019, v2.1 */
@@ -307,33 +310,26 @@ var keywords_filter = new dataFilter({
 //range filters let you see if a NUMERICAL value is within a range of possibilities
 var range_filter = new dataFilter({
 
-    filter_type: FILTERTYPE_RANGE, //range filter
+    filter_type: FILTERTYPE_KEYWORDS, //range filter
 
     //these options tell how the toggle menu should appear in the code
-    selector_caption: "Price: ",
+    selector_caption: "Year Activated: ",
     //array of arrays for the selector. first item is a caption, second is either a value to search for, OR a function.
     //for range options, he second value is an array of the form [min,max]. if either is false, treats it as < or >. 
     //so [false,5] means <5, and [20,false] means >20
     selector_options: [
-        ["All prices", false], //returning false removes all filtering
-        ["Free", [0,0] ], //note that this is how we search for the value equalling zero (a range of 0,0)
-        ["Under $5", [false,5] ], // false,5 = <5
-        ["Under $10",[false,10] ], 
-        ["Between $5 and $10", [5,10] ], 
-        ["Between $10 and $20", [10,20] ],
-        ["Over $20", [20,false] ], // 20,false = >20
-        ["Between $5 and $10 but not $9", function(v,d) { //just a dumb example of a custom function
-            if(v>5 && v<10 && v!=9) { 
-                return true;
-            } else {
-                return false;
-            }
-        }] 
+        ["All Years", false], //returning false removes all filtering
+        ["2019", "2019" ], //note that this is how we search for the value equalling zero (a range of 0,0)
+        ["2018", "2018" ], // false,5 = <5
+        ["2017", "2017" ], 
+        ["2016", "2016" ], 
+        ["Unkown Year", "9999"]
     ],
+
     selector_selected: 0, //default option on list
     selector_id: "options", //id of the HTML object you want to create the keyword filter select inside of
 
-    filter_field: "adult_price", // //the field name in the CSV file that we look for the value in
+    filter_field: "YearActivated", // //the field name in the CSV file that we look for the value in
     
     filter_target: ".circledata", //the svg selector of your data to have this filtering act upon
 
@@ -356,10 +352,10 @@ window.onload = init;
 <body>
     <div id="map"></div>
     <div id="texts">
-        <div id="title">New York Wi-Fi Locations</div>
+        <div id="title">New York Wi-Fi Hotspot Locations</div>
         <div id="author">by Ian Gomez</div>
         <hr>
-        <div id="options"></div>
+        <div id="options" style="z-index:3"></div>
     </div>
 </body>
 </html>
