@@ -56,10 +56,10 @@ print(len(df))
 df2 = df.drop(df[df["State/Area"] == "Los Angeles County"].index)
 df3 = df2.drop(df2[df2["State/Area"] == "New York city"].index)
 df4 = df3.drop(df3[df3["State/Area"] == "District of Columbia"].index)
-df5 = df4.drop(df4[df4["Monet"]] != 1)
+df5 = df4.drop(df4[df4["Month"] != 1].index)
 print(len(df5))
 states = df5["State/Area"].map(lambda x: acronyms[x])
 print(states)
-df4["State/Area"] = states
+df5["State/Area"] = states
 print(df5)
-df5.to_csv("cleaned_median_income.csv")
+df5.to_csv("cleaned_unemployment_data.csv",index=False)
